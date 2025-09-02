@@ -1,0 +1,205 @@
+.header {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 10px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.logoImage {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+    color: #000;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.logoImage img {
+    width: 50px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.logoImage img:hover {
+    transform: scale(1.1);
+}
+
+
+.contenido-general {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+/* derecha */
+.contenido-ahorcado {
+    flex: 0 1 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.contenido-ahorcado img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* izquierda */
+.contenido-informacion {
+    flex: 1 1 55%;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+/* contenido pistas */
+.contenido-pistas {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.contenido-pistas-left,
+.contenido-pistas-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;            /* separación entre elementos internos */
+}
+
+.contenido-pistas-right img {
+    max-width: 100%;
+    height: auto;
+}
+
+.tiempo {
+    margin-bottom: 5px;
+}
+
+.time {
+    font-size: 1.2rem;
+}
+
+.contenido-interacciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    gap: 15px;
+}
+
+/* palabra */
+.contenido-palabra {
+    text-align: center;
+    border-color: black;
+    border-radius: 5px;
+}
+
+/* botones */
+.seccionBTN {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.seccionBTN button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #333;
+    background-color: rgba(255,255,255,0.1);
+    color: #000;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    flex: 1;
+    max-width: 120px;
+}
+
+.seccionBTN button:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+.contenido-teclado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px auto 0 auto;
+    max-width: 800px;
+    gap: 8px;
+}
+
+.contenido-teclado button {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    border-color: #453B09;
+    background: #E8D458;
+    color: black;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    touch-action: manipulation;
+}
+
+.contenido-teclado button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background-color: var(--button-hover);
+}
+.contenido-teclado button:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+    color: #757575;
+    box-shadow: none;
+    border: none;
+    transform: scale(0.9);
+}
+
+.estadoGame{
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+.seccionPausa{
+    background: #81AADA;
+    padding: 20px;
+    border-radius: 6px;
+    width: 350px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+}

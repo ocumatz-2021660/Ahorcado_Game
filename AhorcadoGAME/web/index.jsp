@@ -9,11 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="Style/StyleCss.css"/>        
+        <link rel="stylesheet" href="Style/StyleGame.css"/>        
         <link rel="icon" href="Image/logo.png"/>
         <title>Ahorcado GAME</title>
     </head>
     <body>
+        <header>
+            <div class="logoImage">
+                <img src="Image/logo.png" alt="Logo"/>
+                <span class="logo-text">
+                    <span>Ahorcado</span>
+                    <span>GAME</span>
+                </span>
+            </div>
+        </header>
         <%-- apartado para separar la informacion que muestra avances y las interacciones con el usuario --%>
         <div class="contenido-general">
             <%--Apartado para mostrar al muñeco (progreso de ahorcado) --%>
@@ -31,9 +40,9 @@
                         </div>
 
                         <div class="pistas">
-                            <p id="pistText1">pista1</p>
-                            <p id="pistaText2">pista2</p>
-                            <p id="pistaText3">pista3</p>
+                            <p id="pistText1">pista 1</p>
+                            <p id="pistaText2">pista 2</p>
+                            <p id="pistaText3">pista 3</p>
                         </div>
 
                     </div>
@@ -50,15 +59,28 @@
                         <p id="palabraOculta">_ _ _ _ _ _ _ _</p>
                     </div>
                     <div class="seccionBTN">
+                        <button  class="btnStar" onclick="iniciarJuego()">Iniciar</button>
+                        <button onclick="abrirPausa()">Pausar</button>
                         <button>Reiniciar</button>
-                        <button>Pausar</button>
-                        <button>Salir</button>
                     </div>
+                </div>
+            </div>                    
+
+        </div>
+
+        <div class="contenido-teclado" id="tecladoGame"></div>
+
+        <div id="pausaGame" class="estadoGame">
+
+            <div class="contenidoPausa">           
+                <div id="btnPausa" class="seccionPausa">                    
+                    <h1>PAUSA</h1>    
+                    <button>Continuar</button>
+                    <button onclick="iniciarJuego()">Reiniciar</button>
                 </div>
             </div>
 
         </div>
-            
-            <script src="JavaScript/MyScript.js"></script>
+        <script src="JavaScript/MyScript.js"></script>
     </body>
 </html>
