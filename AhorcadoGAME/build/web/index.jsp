@@ -14,7 +14,11 @@
         <title>Ahorcado GAME</title>
     </head>
     <body>
-        <header>
+        <video autoplay muted loop id="bg-video">
+            <source src="Image/fondoGame.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <header class="encabezado">
             <div class="logoImage">
                 <img src="Image/logo.png" alt="Logo"/>
                 <span class="logo-text">
@@ -27,7 +31,7 @@
         <div class="contenido-general">
             <%--Apartado para mostrar al muñeco (progreso de ahorcado) --%>
             <div class="contenido-ahorcado">            
-                <img src="Image/EjemploAhorcado.png" alt="Ahorcado.png"/>
+                <img src="Image/Ahorcado.png" alt="Ahorcado.png"/>
             </div>
             <%--Apartado para msotrar la palabra, cualidades e interacciones --%>
             <div class="contenido-informacion">                    
@@ -40,9 +44,9 @@
                         </div>
 
                         <div class="pistas">
-                            <p id="pistText1">pista 1</p>
-                            <p id="pistaText2">pista 2</p>
-                            <p id="pistaText3">pista 3</p>
+                            <p id="pistText1">* Pista No.1</p>
+                            <p id="pistaText2">* Pista No.2</p>
+                            <p id="pistaText3">* Pista No.3</p>
                         </div>
 
                     </div>
@@ -58,16 +62,14 @@
                         <h2>Palabra</h2>
                         <p id="palabraOculta">_ _ _ _ _ _ _ _</p>
                     </div>
-                    <div class="seccionBTN">
-                        <button  class="btnStar" onclick="iniciarJuego()">Iniciar</button>
-                        <button onclick="abrirPausa()">Pausar</button>
-                        <button>Reiniciar</button>
-                    </div>
                 </div>
             </div>                    
 
+        </div>        
+        <div class="seccionBTN">
+            <img id="btnAccion" src="Image/botonIniciar.png" alt="iniciar" onclick="iniciarJuego()"/>
+            <img id="btnReiniciar" src="Image/botonReiniciar.png" alt="reiniciar"/>
         </div>
-
         <div class="contenido-teclado" id="tecladoGame"></div>
 
         <div id="pausaGame" class="estadoGame">
@@ -75,8 +77,8 @@
             <div class="contenidoPausa">           
                 <div id="btnPausa" class="seccionPausa">                    
                     <h1>PAUSA</h1>    
-                    <button>Continuar</button>
-                    <button onclick="iniciarJuego()">Reiniciar</button>
+                    <img src="Image/botonIniciar.png" alt="continuar" onclick="cerrarPausa()"/>
+                    <img src="Image/botonSalir.png" alt="Salir" onclick="cerrarJuego()"/>
                 </div>
             </div>
 

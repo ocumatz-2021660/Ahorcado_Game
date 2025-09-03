@@ -5,7 +5,10 @@ let pist1 = document.getElementById('pistText1');
 let pist2 = document.getElementById('pistaText2');
 let pist3 = document.getElementById('pistaText3');
 let objetoName = document.getElementById('objetoName');
+let botonAccion = document.getElementById('btnAccion');
+let botonReiniciar = document.getElementById('btnReiniciar');
 let juegoActivo = false;
+let enPausa = false;
 let palabraSeleccionada = '';
 let tiempo = 0;
 let intervalo;
@@ -41,54 +44,57 @@ const words = [
 ];
 
 function cronometro() {
-    tiempo = 0;
-    reloj.style.color = 'black'; // Restablece el color al inicio
-    reloj.style.fontWeight = 'normal'; // Restablece el peso de la fuente
-    clearInterval(intervalo);
+    clearInterval(intervalo); // limpiar cualquier intervalo anterior
     intervalo = setInterval(() => {
-        tiempo++;
-        let minutos = Math.floor(tiempo / 60);
-        let segundos = tiempo % 60;
-        reloj.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+        if (!enPausa && juegoActivo) { // solo contar tiempo si no está en pausa
+            tiempo++;
+            let minutos = Math.floor(tiempo / 60);
+            let segundos = tiempo % 60;
+            reloj.textContent = `${minutos.toString().padStart(2,'0')}:${segundos.toString().padStart(2,'0')}`;
 
-        if (tiempo >= 60) {
-            reloj.style.color = '#F5D400'; // Amarillo
-        }
-        if (tiempo >= 75) {
-            reloj.style.color = 'red';
-            reloj.style.fontWeight = 'bold';
+            if (tiempo >= 60) reloj.style.color = '#F5D400';
+            if (tiempo >= 75) {
+                reloj.style.color = 'red';
+                reloj.style.fontWeight = 'bold';
+            }
         }
     }, 1000);
 }
 
+
 function generarTeclado() {
     teclado.innerHTML = '';
     const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    for (const letra of letras) {
-        const button = document.createElement('button');
-        button.textContent = letra;
-        button.addEventListener('click', () => encontrarLetra(letra.toLowerCase()));
-        teclado.appendChild(button);
+    
+    for (let i = 0; i < letras.length; i++) {
+        let btn = document.createElement('button');
+        btn.textContent = letras[i];
+        
+        // alternar color rojo/negro
+        if (i % 2 === 0) {
+            btn.className = 'teclado-rojo';
+        } else {
+            btn.className = 'teclado-negro';
+        }
+
+        btn.onclick = function() {
+            if (!juegoActivo) return;
+
+            if (palabraSeleccionada.includes(letras[i].toLowerCase())) {
+                letrasAdivinadas.push(letras[i].toLowerCase());
+            } else {
+                intentosIncorrectos++;
+            }
+
+            // actualizar palabra y deshabilitar la tecla
+            actualizarPalabraMostrada();
+            btn.disabled = true;
+        };
+
+        teclado.appendChild(btn);
     }
 }
 
-function encontrarLetra(letra) {
-    if (!juegoActivo)
-        return;
-
-    const button = Array.from(teclado.children).find(btn => btn.textContent.toLowerCase() === letra);
-    if (button)
-        button.disabled = true;
-
-    if (palabraSeleccionada.includes(letra)) {
-        letrasAdivinadas.push(letra);
-    } else {
-        intentosIncorrectos++;
-
-    }
-
-    const resuelto = actualizarPalabraMostrada();
-}
 
 function actualizarPalabraMostrada() {
     let display = "";
@@ -111,16 +117,26 @@ function desactivarTeclado() {
     teclado.querySelectorAll('button').forEach(btn => btn.disabled = true);
 }
 
-function abrirPausa() {
+function abrirPausa() {    
+    enPausa = true;
+    clearInterval(intervalo);
     document.getElementById('pausaGame').style.display = 'flex';
+    
 }
 
 function cerrarPausa() {
-    document.getElementById("miModal").style.display = "none";
+    enPausa = false;    
+    document.getElementById("pausaGame").style.display = "none";
+    cronometro();
+}
+function cerrarJuego() {
+    location.reload();
 }
 
 function iniciarJuego() {
+    tiempo = 0; 
     juegoActivo = true;
+    enPausa = false;
     letrasAdivinadas = [];
     intentosIncorrectos = 0;
     const randomIndex = Math.floor(Math.random() * words.length);
@@ -134,4 +150,8 @@ function iniciarJuego() {
     actualizarPalabraMostrada();
     generarTeclado();
     document.getElementById('pausaGame').style.display = 'none';
+    botonAccion.src = "Image/botonPausa.png";
+    botonAccion.setAttribute('onclick','abrirPausa()');
+    botonReiniciar.setAttribute('onclick','iniciarJuego()');
+    
 }
