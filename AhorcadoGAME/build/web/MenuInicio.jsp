@@ -64,7 +64,11 @@
                     </div>
                 </div>
             </div>                    
-
+            <div>
+                <a href="index.jsp">
+                    <button class="salir">X</button>
+                </a>
+            </div>
         </div>        
         <div class="seccionBTN">
             <img id="btnAccion" src="Image/botonIniciar.png" alt="iniciar" onclick="iniciarJuego()"/>

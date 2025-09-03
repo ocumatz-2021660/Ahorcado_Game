@@ -152,6 +152,7 @@ function cerrarPausa() {
 
 function cerrarJuego() {
     location.reload();
+    document.getElementById('')
 }
 
 function pantallaLose() {

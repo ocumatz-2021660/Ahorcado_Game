@@ -26,8 +26,23 @@
                     <span>GAME</span>
                 </span>
             </div>
-            <a href="MenuInicio.jsp">Iniciar Juego</a>
-        </header>        
+
+        </header>       
+        <div class="container-InisioSesion">
+            <div class="opciones">
+                <div class="formulario" id="login-form">
+                    <h2>Ahorcado GAME</h2>
+                    <label for="Nombredeusuario">Nombre de usuario</label>
+                    <input type="text" placeholder="Usuario" id="login-username" required>
+                    <label for="ContraseñaUsuario">Contraseña</label>
+                    <input type="password" placeholder="Contraseña" id="login-password" required>
+                    <a href="MenuInicio.jsp">
+                        <button onclick="">Iniciar sesión</button>
+                    </a>
+                    <p id="login-error" class="error-msg"></p>
+                </div>     
+            </div>
+        </div>
         <script src="JavaScript/MyScript.js"></script>
     </body>
 </html>
