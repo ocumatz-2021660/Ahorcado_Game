@@ -16,30 +16,30 @@ let letrasAdivinadas = [];
 let intentosIncorrectos = 0;
 const maxIntentos = 6;
 
-const words = [
+const palabras = [
     {
-        word: "motocicleta",
-        clues: ["Objeto pesado", "Requiere equilibrio en su uso", "Proporciona mobilidad eficiente"]
+        palabra: "motocicleta",
+        pistas: ["Objeto pesado", "Requiere equilibrio en su uso", "Proporciona mobilidad eficiente"]
     },
     {
-        word: "cuaderno",
-        clues: ["Utensilio escolar", "material de plastico o carton", "Variedad de estilos"]
+        palabra: "cuaderno",
+        pistas: ["Utensilio escolar", "material de plastico o carton", "Variedad de estilos"]
     },
     {
-        word: "carretera",
-        clues: ["Transitas demasiados autos", "Posee asfalto", "tiene normas en su uso"]
+        palabra: "carretera",
+        pistas: ["Transitas demasiados autos", "Posee asfalto", "tiene normas en su uso"]
     },
     {
-        word: "laboratorio",
-        clues: ["Enfoque de investigacion", "sigue normas de trabajo y seguridad", "requiere uso profecional"]
+        palabra: "laboratorio",
+        pistas: ["Enfoque de investigacion", "sigue normas de trabajo y seguridad", "requiere uso profecional"]
     },
     {
-        word: "internet",
-        clues: ["Uso global", "permite el acceso a multiple informacion", "Es una inovacion humana"]
+        palabra: "internet",
+        pistas: ["Uso global", "permite el acceso a multiple informacion", "Es una inovacion humana"]
     },
     {
-        word: "terremoto",
-        clues: ["Es un desastre natural", "Genera demasiado movimiento", "Se genera en grandes magnitudes"]
+        palabra: "terremoto",
+        pistas: ["Es un desastre natural", "Genera demasiado movimiento", "Se genera en grandes magnitudes"]
     }
 ];
 
@@ -112,11 +112,6 @@ function actualizarPalabraMostrada() {
     return resuelto;
 }
 
-
-function desactivarTeclado() {
-    teclado.querySelectorAll('button').forEach(btn => btn.disabled = true);
-}
-
 function abrirPausa() {    
     enPausa = true;
     clearInterval(intervalo);
@@ -139,13 +134,13 @@ function iniciarJuego() {
     enPausa = false;
     letrasAdivinadas = [];
     intentosIncorrectos = 0;
-    const randomIndex = Math.floor(Math.random() * words.length);
-    const chosenWordData = words[randomIndex];
-    palabraSeleccionada = chosenWordData.word;
-    objetoName.textContent = chosenWordData.category;
-    pist1.textContent = chosenWordData.clues[0];
-    pist2.textContent = chosenWordData.clues[1];
-    pist3.textContent = chosenWordData.clues[2];
+    const randomIndex = Math.floor(Math.random() * palabras.length);
+    const chosenWordData = palabras[randomIndex];
+    palabraSeleccionada = chosenWordData.palabra;
+    objetoName.textContent = chosenWordData.palabra;
+    pist1.textContent = chosenWordData.pistas[0];
+    pist2.textContent = chosenWordData.pistas[1];
+    pist3.textContent = chosenWordData.pistas[2];
     cronometro();
     actualizarPalabraMostrada();
     generarTeclado();
