@@ -31,15 +31,15 @@
         <div class="container-InisioSesion">
             <div class="opciones">
                 <div class="formulario" id="login-form">
-                    <h2>Ahorcado GAME</h2>
-                    <label for="Nombredeusuario">Nombre de usuario</label>
-                    <input type="text" placeholder="Usuario" id="login-username" required>
-                    <label for="ContraseñaUsuario">Contraseña</label>
-                    <input type="password" placeholder="Contraseña" id="login-password" required>
-                    <a href="MenuInicio.jsp">
-                        <button onclick="">Iniciar sesión</button>
-                    </a>
-                    <p id="login-error" class="error-msg"></p>
+                    <form action="Validar" method="POST">
+                        <h2>Ahorcado GAME</h2>
+                        <label for="Nombredeusuario">Nombre de usuario</label>
+                        <input type="text" placeholder="Usuario" id="login-username" name="txtUsuarioName" required>
+                        <label for="ContraseñaUsuario">Contraseña</label>
+                        <input type="password" placeholder="Contraseña" id="login-password" name="txtPass" required>                        
+                            <button name="accion" value="Ingresar" >Iniciar sesión</button>                        
+                        <p id="login-error" class="error-msg"></p>
+                    </form>
                 </div>     
             </div>
         </div>

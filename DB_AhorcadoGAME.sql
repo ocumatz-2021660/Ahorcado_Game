@@ -5,7 +5,7 @@ use DB_AhorcadoGAME;
 create table usuarios(
 IDusuario int auto_increment not null,
 nombreUsuario varchar(100) not null,
-contraseña varchar(100) not null,
+contrasena varchar(100) not null,
 primary key PK_IDusuarios (IDusuario)
 );
 
@@ -24,19 +24,20 @@ primary key PK_IDPalabra (IDPalabra)
 -- CREATE
 DELIMITER //
 create procedure sp_insertar_usuario(
-    in p_nombreusuario varchar(100),
-    in p_contraseña varchar(100)
+    in Newnombreusuario varchar(100),
+    in Newcontrasena varchar(100)
 )
 begin
-    insert into usuarios (nombreusuario, contraseña)
-    values (p_nombreusuario, p_contraseña);
+    insert into usuarios (nombreusuario, contrasena)
+    values (Newnombreusuario, Newcontraseña);
 end //
 DELIMITER ;
 call sp_insertar_usuario('juan', 'contraseña123');
 call sp_insertar_usuario('mlara', 'contraseña456');
 call sp_insertar_usuario('eduardoHor', 'contraseña789');
-call sp_insertar_usuario('ocumatz', 'contraseña321');
+call sp_insertar_usuario('ocumatz', '2021660');
 call sp_insertar_usuario('jregil', 'contraseña654');
+call sp_insertar_usuario('hor','2025');
 
 -- mOstrar
 DELIMITER //
@@ -49,38 +50,49 @@ call sp_MostrarUsuarios();
 -- buscar
 DELIMITER //
 create procedure sp_buscarUsuario(
-    in p_idusuario int
+    in IDusuario int
 )
 begin
-    select * from usuarios where idusuario = p_idusuario;
+    select * from usuarios where idusuario = IDusuario;
 end //
 DELIMITER ;
 call sp_buscarUsuario(1);
 -- Actualizar
 DELIMITER //
 create procedure sp_actualizarUsuario(
-    in p_idusuario int,
-    in p_nombreusuario varchar(100),
-    in p_contraseña varchar(100)
+    in Actidusuario int,
+    in Actnombreusuario varchar(100),
+    in Actcontrasena varchar(100)
 )
 begin
     update usuarios
-    set nombreusuario = p_nombreusuario, contraseña = p_contraseña
-    where idusuario = p_idusuario;
+    set nombreusuario = Actnombreusuario, contrasena = Actcontrasena
+    where idusuario = Actidusuario;
 end //
 DELIMITER ;
 call sp_actualizarUsuario(1,'juan', 'contraseña123');
 -- eliminar usuario
 DELIMITER //
 create procedure sp_eliminarUsuario(
-    in p_idusuario int
+    in EXidusuario int
 )
 begin
-    delete from usuarios where idusuario = p_idusuario;
+    delete from usuarios where idusuario = EXidusuario;
 end //
 DELIMITER ;
 -- call sp_eliminarUsuario(1);
 
+DELIMITER //
+create procedure sp_ValidarUsuario(
+	in nameUser varchar(100),
+    in pass varchar(100)
+    )
+		begin
+		select * from Usuarios
+        where nameUser = nombreUsuario and contrasena = pass;
+		end //
+DELIMITER ;
+call sp_ValidarUsuario('juan', 'contraseña123');
 -- Procedimientos almacenados de palabra
 -- Crear palabra
 DELIMITER //
