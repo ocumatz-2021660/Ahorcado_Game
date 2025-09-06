@@ -1,21 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.PalabrasDAO;
+import modelo.Palabras;
 
 /**
  *
  * @author Clara Lopez
  */
 public class Controlador extends HttpServlet {
+
+    PalabrasDAO palabraDAO = new PalabrasDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,11 +31,28 @@ public class Controlador extends HttpServlet {
             throws ServletException, IOException {
         String direccion = request.getParameter("direccion");
         String accion = request.getParameter("accion");
-        
+
         if (direccion.equals("Game")) {
+            switch (accion) {
+                case "Mostrar":
+                    List listaPalabras = palabraDAO.listarPalabras();
+                    request.setAttribute("palabras", listaPalabras);
+                    break;
+                case "Buscar":
+
+                    break;               
+                case "ObtenerPalabra":
+                    int cantidadPalabras = palabraDAO.cantidadPalabras();
+                    if (cantidadPalabras > 0) {
+                        int idAleatorio = (int) (Math.random() * cantidadPalabras) + 1;
+                        Palabras palabraJuego = palabraDAO.buscarPalabra(idAleatorio);
+                        request.getSession().setAttribute("palabraJuego", palabraJuego);
+                    }
+                    request.getRequestDispatcher("MenuInicio.jsp").forward(request, response);
+                    break;
+// ...
+            }
             request.getRequestDispatcher("MenuInicio.jsp").forward(request, response);
-        }else if(direccion.equals("Login")){
-            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 

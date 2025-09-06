@@ -7,6 +7,7 @@ let pist3 = document.getElementById('pistaText3');
 let objetoName = document.getElementById('objetoName');
 let botonAccion = document.getElementById('btnAccion');
 let botonReiniciar = document.getElementById('btnReiniciar');
+let botonPausa = document.getElementById('btnPausa');
 let imgAhorcado = document.getElementById('ImagenAhorcado');
 let juegoActivo = false;
 let enPausa = false;
@@ -19,33 +20,6 @@ let intentosIncorrectos = 0;
 const maxIntentos = 6;
 let chosenWordData = {}; // Declarar chosenWordData globalmente
 
-const palabras = [
-    {
-        palabra: "motocicleta",
-        pistas: ["Objeto pesado", "Requiere equilibrio en su uso", "Proporciona mobilidad eficiente"]
-    },
-    {
-        palabra: "cuaderno",
-        pistas: ["Utensilio escolar", "material de plastico o carton", "Variedad de estilos"]
-    },
-    {
-        palabra: "carretera",
-        pistas: ["Transitas demasiados autos", "Posee asfalto", "tiene normas en su uso"]
-    },
-    {
-        palabra: "laboratorio",
-        pistas: ["Enfoque de investigacion", "sigue normas de trabajo y seguridad", "requiere uso profecional"]
-    },
-    {
-        palabra: "internet",
-        pistas: ["Uso global", "permite el acceso a multiple informacion", "Es una inovacion humana"]
-    },
-    {
-        palabra: "terremoto",
-        pistas: ["Es un desastre natural", "Genera demasiado movimiento", "Se genera en grandes magnitudes"]
-    }
-];
-
 function cronometro() {
     clearInterval(intervalo); // limpiar cualquier intervalo anterior
     intervalo = setInterval(() => {
@@ -55,11 +29,15 @@ function cronometro() {
             let segundos = tiempo % 60;
             reloj.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
 
-            if (tiempo >= 60)
+            if (tiempo >= 60){
                 reloj.style.color = '#F5D400';
+            }
             if (tiempo >= 75) {
                 reloj.style.color = 'red';
                 reloj.style.fontWeight = 'bold';
+            }
+             if (tiempo === 90) {
+                pantallaLose();
             }
         }
     }, 1000);
@@ -99,6 +77,7 @@ function generarTeclado() {
             if (verificarVictoria()) {
                 detenerJuego();
                 document.getElementById('juegoWord').textContent = 'GANASTE';
+                document.getElementById('nameObjetc').style.display = "flex";
                 pantallaLose();
             }
         };
@@ -151,8 +130,7 @@ function cerrarPausa() {
 }
 
 function cerrarJuego() {
-    location.reload();
-    document.getElementById('')
+    window.location.href = "index.jsp";
 }
 
 function pantallaLose() {
@@ -160,7 +138,7 @@ function pantallaLose() {
     document.getElementById('loseGame').style.display = 'flex';
     cronometro();
 
-    if (estadoJuego === true) {        
+    if (estadoJuego === true) {
         objetoName.textContent = chosenWordData.palabra;
     }
 }
@@ -190,28 +168,36 @@ function errores() {
             break;
     }
 }
+function reiniciarJuego(){
+    iniciarJuego();   
+}
 
 function iniciarJuego() {
+    let palabraCompleta = document.getElementById('objetoName').textContent;
+    if (!palabraCompleta || palabraCompleta.trim() === 'Nombre del objeto' || palabraCompleta.trim() === '') {
+        return; 
+    }
     tiempo = 0;
     juegoActivo = true;
     enPausa = false;
     estadoJuego = false;
     letrasAdivinadas = [];
     intentosIncorrectos = 0;
-    const randomIndex = Math.floor(Math.random() * palabras.length);
-    chosenWordData = palabras[randomIndex]; // Asignar palabra a la variable global
-    palabraSeleccionada = chosenWordData.palabra;
-    pist1.textContent = chosenWordData.pistas[0];
-    pist2.textContent = chosenWordData.pistas[1];
-    pist3.textContent = chosenWordData.pistas[2];
+    palabraSeleccionada = palabraCompleta.toLowerCase().trim();    
     cronometro();
-    actualizarPalabraMostrada();
     generarTeclado();
-    document.getElementById('objetoName').textContent = 'Nombre del objeto';
+    actualizarPalabraMostrada();
     document.getElementById('pausaGame').style.display = 'none';
     document.getElementById('loseGame').style.display = 'none';
+     document.getElementById('nameObjetc').style.display = 'none';
+    document.getElementById('changeNone').setAttribute('href','#');
+    document.getElementById('changeIniciar').setAttribute('href','Controlador?direccion=Game&accion=ObtenerPalabra');    
     imgAhorcado.setAttribute('src', 'Image/Ahorcado.png');
-    botonAccion.src = "Image/botonPausa.png";
-    botonAccion.setAttribute('onclick', 'abrirPausa()');
-    botonReiniciar.setAttribute('onclick', 'iniciarJuego()');
-}
+    botonPausa.setAttribute('onclick','abrirPausa()');    
+    botonReiniciar.setAttribute('onclick','reiniciarJuego()');
+    
+}   
+
+window.onload = function() {
+    reiniciarJuego();
+};
