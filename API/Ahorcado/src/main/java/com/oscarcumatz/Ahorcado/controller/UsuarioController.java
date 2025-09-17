@@ -30,11 +30,15 @@ public class UsuarioController {
         if ("Vasio".equals(newUsuario.getNombre_Usuario())) {
             return "Todos los campos deben estar llenos";
         }
+        if("Maximo".equals(newUsuario.getNombre_Usuario())){
+            return "El nombre exede los caracteres permitidos (100)";
+        }
         if("EnUso".equals(newUsuario.getNombre_Usuario())){
             return "El nombre ya esta en uso, escoja otro porfavor";
         }
         return "Usuario agregado correctamente";
     }
+
     @PutMapping ("/{Id_Usuario}")
     public String actualizarUsuario(@PathVariable Integer Id_Usuario ,@RequestBody Usuarios usuarios){
         Usuarios updateUsuario = usuarioService.actualizarUsuario(Id_Usuario ,usuarios);
@@ -43,6 +47,9 @@ public class UsuarioController {
         }
         if ("Vasio".equals(updateUsuario.getNombre_Usuario())) {
             return "Todos los campos deben estar llenos";
+        }
+        if("Maximo".equals(updateUsuario.getNombre_Usuario())){
+            return "El nombre exede los caracteres permitidos (100)";
         }
         if("EnUso".equals(updateUsuario.getNombre_Usuario())){
             return "El nombre ya esta en uso, escoja otro porfavor";
