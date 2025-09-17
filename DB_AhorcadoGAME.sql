@@ -1,22 +1,23 @@
 drop database if exists DB_AhorcadoGAME;
 create database DB_AhorcadoGAME;
 use DB_AhorcadoGAME;
-
+ 
 create table usuarios(
-IDusuario int auto_increment not null,
-nombreUsuario varchar(100) not null,
+Id_Usuario int auto_increment not null,
+nombre_Usuario varchar(100) not null,
 contrasena varchar(100) not null,
-primary key PK_IDusuarios (IDusuario)
+primary key PK_IDusuarios (Id_Usuario)
 );
 
 create table Palabras(
-IDPalabra int auto_increment not null,
-nombrePalabra varchar(100)not null,
-pistaUno varchar(250)not null,
-pistaDos varchar(250)not null,
-pistaTres varchar(250)not null,
-primary key PK_IDPalabra (IDPalabra)
+Id_Palabra int auto_increment not null,
+nombre_Palabra varchar(100)not null,
+pista_Uno varchar(250)not null,
+pista_Dos varchar(250)not null,
+pista_Tres varchar(250)not null,
+primary key PK_IDPalabra (Id_Palabra)
 );
+
 
 -- PROCEDIMIENTOS ALMACENADOS ---
 -- USUARIOS ---
@@ -28,7 +29,7 @@ create procedure sp_insertar_usuario(
     in Newcontrasena varchar(100)
 )
 begin
-    insert into usuarios (nombreusuario, contrasena)
+    insert into usuarios (nombre_Usuario, contrasena)
     values (Newnombreusuario, Newcontraseña);
 end //
 DELIMITER ;
@@ -38,6 +39,7 @@ call sp_insertar_usuario('eduardoHor', 'contraseña789');
 call sp_insertar_usuario('ocumatz', '2021660');
 call sp_insertar_usuario('jregil', 'contraseña654');
 call sp_insertar_usuario('hor','2025');
+call sp_insertar_usuario('1','1');
 
 -- mOstrar
 DELIMITER //
@@ -53,7 +55,7 @@ create procedure sp_buscarUsuario(
     in IDusuario int
 )
 begin
-    select * from usuarios where idusuario = IDusuario;
+    select * from usuarios where Id_Usuario = IDusuario;
 end //
 DELIMITER ;
 call sp_buscarUsuario(1);
@@ -66,8 +68,8 @@ create procedure sp_actualizarUsuario(
 )
 begin
     update usuarios
-    set nombreusuario = Actnombreusuario, contrasena = Actcontrasena
-    where idusuario = Actidusuario;
+    set nombre_Usuario = Actnombreusuario, contrasena = Actcontrasena
+    where Id_Usuario = Actidusuario;
 end //
 DELIMITER ;
 call sp_actualizarUsuario(1,'juan', 'contraseña123');
@@ -77,7 +79,7 @@ create procedure sp_eliminarUsuario(
     in EXidusuario int
 )
 begin
-    delete from usuarios where idusuario = EXidusuario;
+    delete from usuarios where Id_Usuario = EXidusuario;
 end //
 DELIMITER ;
 -- call sp_eliminarUsuario(1);
@@ -89,10 +91,11 @@ create procedure sp_ValidarUsuario(
     )
 		begin
 		select * from Usuarios
-        where nameUser = nombreUsuario and contrasena = pass;
+        where nameUser = nombre_Usuario and contrasena = pass;
 		end //
 DELIMITER ;
 call sp_ValidarUsuario('juan', 'contraseña123');
+
 -- Procedimientos almacenados de palabra
 -- Crear palabra
 DELIMITER //
@@ -103,12 +106,11 @@ create procedure sp_insertar_palabra(
     in p_pistatres varchar(250)
 )
 begin
-    insert into palabras (nombrepalabra, pistauno, pistados, pistatres)
+    insert into palabras (nombre_Palabra, pista_Uno, pista_Dos, pista_Tres)
     values (p_nombrepalabra, p_pistauno, p_pistados, p_pistatres);
 end //
 DELIMITER ;
 call sp_insertar_palabra('motocicleta', 'Objeto pesado', 'Requiere equilibrio en su uso', 'Proporciona mobilidad eficiente');
-call sp_insertar_palabra('cuaderno', 'Utensilio escolar', '"material de plastico o carton', 'Variedad de estilos');
 call sp_insertar_palabra('carretera', 'Transitas demasiados autos', 'Posee asfalto', 'tiene normas en su uso');
 call sp_insertar_palabra('laboratorio', 'Enfoque de investigacion', 'sigue normas de trabajo y seguridad', 'requiere uso profecional');
 call sp_insertar_palabra('internet', 'Uso global', 'permite el acceso a multiple informacion', 'Es una inovacion humana');
@@ -126,7 +128,7 @@ create procedure sp_obtener_palabra_por_id(
     in p_idpalabra int
 )
 begin
-    select * from palabras where idpalabra = p_idpalabra;
+    select * from palabras where Id_Palabra = p_idpalabra;
 end //
 DELIMITER ;
 DELIMITER //
@@ -140,10 +142,10 @@ create procedure sp_actualizar_palabra(
 begin
     update palabras
     set nombrepalabra = p_nombrepalabra,
-        pistauno = p_pistauno,
-        pistados = p_pistados,
-        pistatres = p_pistatres
-    where idpalabra = p_idpalabra;
+        pista_Uno = p_pistauno,
+        pista_Dos = p_pistados,
+        pista_Tres = p_pistatres
+    where Id_Palabra = p_idpalabra;
 end //
 DELIMITER ;
 DELIMITER //
@@ -151,6 +153,6 @@ create procedure sp_eliminar_palabra(
     in p_idpalabra int
 )
 begin
-    delete from palabras where idpalabra = p_idpalabra;
+    delete from palabras where Id_Palabra = p_idpalabra;
 end //
 DELIMITER ;
