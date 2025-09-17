@@ -1,3 +1,4 @@
+
 let reloj = document.getElementById('reloj');
 let teclado = document.getElementById('tecladoGame');
 let palabraOculta = document.getElementById('palabraOculta');
@@ -12,15 +13,60 @@ let juegoActivo = false;
 let enPausa = false;
 let estadoJuego = false;
 let palabraSeleccionada = '';
+let imagenPalabra = '';
 let tiempo = 0;
 let intervalo;
 let letrasAdivinadas = [];
 let intentosIncorrectos = 0;
 const maxIntentos = 6;
-let chosenWordData = {}; // Declarar chosenWordData globalmente
+let chosenWordData = {};
 
-// Ahorraremos espacio de memoria eliminando el array 'palabras' de este script.
-// Ahora la palabra y las pistas vienen directamente de la base de datos a través del JSP.
+const palabrasCollection = [
+    {
+        palabra: 'motocicleta',
+        imagen: 'Image/MotocicletaImage.png'                
+    },
+    {
+        palabra: 'carretera',
+        imagen: 'Image/carreteraImagen.png'
+    },
+    {
+        palabra: 'laboratorio',
+        imagen: 'Image/laboratorioImage.png'
+    },
+    {
+        palabra: 'internet',
+        imagen: 'Image/ntenetImage.png'
+    },
+    {
+        palabra: 'terremoto',
+        imagen: 'Image/terremotoImage.png'
+    },
+    {
+        palabra: 'tortugas',
+        imagen: 'Image/tortugasImage.png'
+    },
+    {
+        palabra: 'profesor',
+        imagen: 'Image/profesorImage.png'
+    },
+    {
+        palabra: 'interruptor',
+        imagen: 'Image/interruptorImage.png'
+    },
+    {
+        palabra: 'licuadora',
+        imagen: 'Image/licuadoraImage.png'
+    },
+    {
+        palabra: 'computadora',
+        imagen: 'Image/computadoraImage.png'
+    }
+
+
+
+
+];
 
 function cronometro() {
     clearInterval(intervalo);
@@ -70,8 +116,17 @@ function generarTeclado() {
             btn.disabled = true;
 
             if (verificarVictoria()) {
+                const palabraEncontrada = palabrasCollection.find(p => p.palabra.toLowerCase() === palabraSeleccionada.toLowerCase());
+
+                if (palabraEncontrada) {
+                    imagenPalabra = palabraEncontrada.imagen;
+                } else {
+                    imagenPalabra = "Image/default.png";
+                }
                 detenerJuego();
                 document.getElementById('juegoWord').textContent = 'GANASTE';
+                document.getElementById('imagenOculta').setAttribute('src', imagenPalabra);
+                        
                 pantallaLose();
             }
         };
@@ -129,10 +184,9 @@ function cerrarJuego() {
 function pantallaLose() {
     estadoJuego = true;
     document.getElementById('loseGame').style.display = 'flex';
-    detenerJuego(); // Se detiene el cronómetro al perder
+    detenerJuego();
 
     if (estadoJuego === true) {
-        // Al perder, muestra la palabra completa
         objetoName.textContent = palabraSeleccionada.toUpperCase();
     }
 }

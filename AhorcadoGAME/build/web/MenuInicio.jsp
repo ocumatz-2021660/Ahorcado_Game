@@ -60,7 +60,7 @@
 
                     <div class="contenido-pistas-right">                       
                         <p id="objetoName">Nombre del objeto</p>
-                        <img src="Image/objetoAleatorio.png" alt="ImagenObjeto"/>
+                        <img id="imagenOculta" src="Image/objetoAleatorio.png" alt="ImagenObjeto"/>
                     </div>
 
                 </div>

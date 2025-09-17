@@ -40,6 +40,10 @@ call sp_insertar_usuario('ocumatz', '2021660');
 call sp_insertar_usuario('jregil', 'contraseña654');
 call sp_insertar_usuario('hor','2025');
 call sp_insertar_usuario('1','1');
+call sp_insertar_usuario('hugo','1');
+call sp_insertar_usuario('pineda','1');
+call sp_insertar_usuario('regil','1');
+
 
 -- mOstrar
 DELIMITER //
@@ -115,6 +119,11 @@ call sp_insertar_palabra('carretera', 'Transitas demasiados autos', 'Posee asfal
 call sp_insertar_palabra('laboratorio', 'Enfoque de investigacion', 'sigue normas de trabajo y seguridad', 'requiere uso profecional');
 call sp_insertar_palabra('internet', 'Uso global', 'permite el acceso a multiple informacion', 'Es una inovacion humana');
 call sp_insertar_palabra('terremoto', 'Es un desastre natural', 'Genera demasiado movimiento', 'Se genera en grandes magnitudes');
+call sp_insertar_palabra('tortugas', 'animal marino', 'en peligro de extinción', 'color verdoso');
+call sp_insertar_palabra('profesor', 'Area laboral', 'Dirige pequeños grupos', 'Desarrollan diferentes temas');
+call sp_insertar_palabra('interruptor', 'utencilio electrico', 'permite el flujo de energia', 'requiere instalación');
+call sp_insertar_palabra('licuadora', 'Aparato electronico', 'posee navajas en su interior', 'permite generar liquidos');
+call sp_insertar_palabra('computadora', 'posee una pantalla integrada', 'requiere RAM', 'se le pueden conectar puertos');
 
 DELIMITER //
 create procedure sp_obtener_palabras()
