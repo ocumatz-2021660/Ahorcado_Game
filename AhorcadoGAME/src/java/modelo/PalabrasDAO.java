@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PalabrasDAO {
@@ -25,11 +26,11 @@ public class PalabrasDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Palabras words = new Palabras();
-                words.setIDPalabra(rs.getInt(1));
-                words.setNombrePalabra(rs.getString(2));
-                words.setPistaUno(rs.getString(3));
-                words.setPistaDos(rs.getString(4));
-                words.setPistaTres(rs.getString(5));
+                words.setId_Palabra(rs.getInt(1));
+                words.setNombre_Palabra(rs.getString(2));
+                words.setPista_Uno(rs.getString(3));
+                words.setPista_Dos(rs.getString(4));
+                words.setPista_Tres(rs.getString(5));
 
                 listaPalabras.add(words);
             }
@@ -50,11 +51,11 @@ public class PalabrasDAO {
 
             if (rs.next()) {
                 word = new Palabras();
-                word.setIDPalabra(rs.getInt(1));
-                word.setNombrePalabra(rs.getString(2));
-                word.setPistaUno(rs.getString(3));
-                word.setPistaDos(rs.getString(4));
-                word.setPistaTres(rs.getString(5));
+                word.setId_Palabra(rs.getInt(1));
+                word.setNombre_Palabra(rs.getString(2));
+                word.setPista_Uno(rs.getString(3));
+                word.setPista_Dos(rs.getString(4));
+                word.setPista_Tres(rs.getString(5));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,7 +64,7 @@ public class PalabrasDAO {
     }
 
     public int cantidadPalabras() {
-        String sql = "call sp_ContarPalabras();"; 
+        String sql = "call sp_ContarPalabras();";
         int cantidad = 0;
         try {
             con = cn.Conexion();
@@ -77,4 +78,65 @@ public class PalabrasDAO {
         }
         return cantidad;
     }
+
+    public Palabras obtenerPalabraAleatoriauwu() {
+        String sql = "CALL sp_MostrarPalabra();";
+        List<Palabras> listaPalabras = new ArrayList<>();
+        Palabras palabraAleatoria = null;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Palabras words = new Palabras();
+                words.setId_Palabra(rs.getInt(1));
+                words.setNombre_Palabra(rs.getString(2));
+                words.setPista_Uno(rs.getString(3));
+                words.setPista_Dos(rs.getString(4));
+                words.setPista_Tres(rs.getString(5));
+                listaPalabras.add(words);
+            }
+
+            if (!listaPalabras.isEmpty()) {
+                // Esto es lo que hace la magia de la aleatoriedad
+                Collections.shuffle(listaPalabras);
+                palabraAleatoria = listaPalabras.get(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return palabraAleatoria;
+    }
+    
+    public Palabras obtenerPalabraAleatoria() {
+        Palabras palabra = null;
+        String sql = "SELECT * FROM Palabras ORDER BY RAND() LIMIT 1;";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                palabra = new Palabras();
+                palabra.setId_Palabra(rs.getInt("Id_Palabra"));
+                palabra.setNombre_Palabra(rs.getString("nombre_Palabra"));
+                palabra.setPista_Uno(rs.getString("pista_Uno"));
+                palabra.setPista_Dos(rs.getString("pista_Dos"));
+                palabra.setPista_Tres(rs.getString("pista_Tres"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error al obtener palabra aleatoria");
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return palabra;
+    }
 }
+
+

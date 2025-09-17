@@ -2,33 +2,33 @@
 package modelo;
 
 public class Usuarios {
-private int IDusuario;
-private String nombreUsuario;
+private int Id_Usuario;
+private String nombre_Usuario;
 private String contrasena;
 
     public Usuarios() {
     }
 
-    public Usuarios(int IDusuario, String nombreUsuario, String contrasena) {
-        this.IDusuario = IDusuario;
-        this.nombreUsuario = nombreUsuario;
+    public Usuarios(int Id_Usuario, String nombre_Usuario, String contrasena) {
+        this.Id_Usuario = Id_Usuario;
+        this.nombre_Usuario = nombre_Usuario;
         this.contrasena = contrasena;
     }
 
-    public int getIDusuario() {
-        return IDusuario;
+    public int getId_Usuario() {
+        return Id_Usuario;
     }
 
-    public void setIDusuario(int IDusuario) {
-        this.IDusuario = IDusuario;
+    public void setId_Usuario(int Id_Usuario) {
+        this.Id_Usuario = Id_Usuario;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getNombre_Usuario() {
+        return nombre_Usuario;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setNombre_Usuario(String nombre_Usuario) {
+        this.nombre_Usuario = nombre_Usuario;
     }
 
     public String getContrasena() {
@@ -37,11 +37,6 @@ private String contrasena;
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuarios{" + "IDusuario=" + IDusuario + ", nombreUsuario=" + nombreUsuario + ", contrasena=" + contrasena + '}';
     }
 
 

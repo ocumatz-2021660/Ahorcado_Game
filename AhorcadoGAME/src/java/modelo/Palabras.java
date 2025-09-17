@@ -2,67 +2,63 @@
 package modelo;
 
 public class Palabras {
-    private int IDPalabra;
-    private String nombrePalabra;
-    private String pistaUno;
-    private String pistaDos;
-    private String pistaTres;
+    private int Id_Palabra;
+    private String nombre_Palabra;
+    private String pista_Uno;
+    private String pista_Dos;
+    private String pista_Tres;
 
     public Palabras() {
     }
 
-    public Palabras(int IDPalabra, String nombrePalabra, String pistaUno, String pistaDos, String pistaTres) {
-        this.IDPalabra = IDPalabra;
-        this.nombrePalabra = nombrePalabra;
-        this.pistaUno = pistaUno;
-        this.pistaDos = pistaDos;
-        this.pistaTres = pistaTres;
+    public Palabras(int Id_Palabra, String nombre_Palabra, String pista_Uno, String pista_Dos, String pista_Tres) {
+        this.Id_Palabra = Id_Palabra;
+        this.nombre_Palabra = nombre_Palabra;
+        this.pista_Uno = pista_Uno;
+        this.pista_Dos = pista_Dos;
+        this.pista_Tres = pista_Tres;
+    }       
+
+    public int getId_Palabra() {
+        return Id_Palabra;
     }
 
-    public int getIDPalabra() {
-        return IDPalabra;
+    public void setId_Palabra(int Id_Palabra) {
+        this.Id_Palabra = Id_Palabra;
     }
 
-    public void setIDPalabra(int IDPalabra) {
-        this.IDPalabra = IDPalabra;
+    public String getNombre_Palabra() {
+        return nombre_Palabra;
     }
 
-    public String getNombrePalabra() {
-        return nombrePalabra;
+    public void setNombre_Palabra(String nombre_Palabra) {
+        this.nombre_Palabra = nombre_Palabra;
     }
 
-    public void setNombrePalabra(String nombrePalabra) {
-        this.nombrePalabra = nombrePalabra;
+    public String getPista_Uno() {
+        return pista_Uno;
     }
 
-    public String getPistaUno() {
-        return pistaUno;
+    public void setPista_Uno(String pista_Uno) {
+        this.pista_Uno = pista_Uno;
     }
 
-    public void setPistaUno(String pistaUno) {
-        this.pistaUno = pistaUno;
+    public String getPista_Dos() {
+        return pista_Dos;
     }
 
-    public String getPistaDos() {
-        return pistaDos;
+    public void setPista_Dos(String pista_Dos) {
+        this.pista_Dos = pista_Dos;
     }
 
-    public void setPistaDos(String pistaDos) {
-        this.pistaDos = pistaDos;
+    public String getPista_Tres() {
+        return pista_Tres;
     }
 
-    public String getPistaTres() {
-        return pistaTres;
+    public void setPista_Tres(String pista_Tres) {
+        this.pista_Tres = pista_Tres;
     }
 
-    public void setPistaTres(String pistaTres) {
-        this.pistaTres = pistaTres;
-    }
-
-    @Override
-    public String toString() {
-        return "Palabras{" + "IDPalabra=" + IDPalabra + ", nombrePalabra=" + nombrePalabra + ", pistaUno=" + pistaUno + ", pistaDos=" + pistaDos + ", pistaTres=" + pistaTres + '}';
-    }
     
     
 }

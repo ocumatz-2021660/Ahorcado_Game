@@ -23,8 +23,8 @@ public class UsuariosDAO {
             ps.setString(2, pass);
             rs = ps.executeQuery();
             while (rs.next()) {
-                usuarios.setIDusuario(rs.getInt("IDusuario"));
-                usuarios.setNombreUsuario(rs.getString("nombreUsuario"));
+                usuarios.setId_Usuario(rs.getInt("Id_Usuario"));
+                usuarios.setNombre_Usuario(rs.getString("nombre_Usuario"));
                 usuarios.setContrasena(rs.getString("contrasena"));
             }
         } catch (Exception e) {

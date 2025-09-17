@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.Palabras;
+import modelo.PalabrasDAO;
 import modelo.UsuariosDAO;
 import modelo.Usuarios;
 
@@ -23,6 +25,9 @@ import modelo.Usuarios;
 public class Validar extends HttpServlet {
     Usuarios usuarios = new Usuarios();
     UsuariosDAO usuariosDAO = new UsuariosDAO();
+    PalabrasDAO palabrasDAO = new PalabrasDAO();
+    Palabras palabraAleatoria;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -72,29 +77,35 @@ public class Validar extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+
+      @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
 
-        // Evitar NPE si accion es null
         if ("Ingresar".equalsIgnoreCase(accion)) {
-
             String name = request.getParameter("txtUsuarioName");
             String pass = request.getParameter("txtPass");
 
             usuarios = usuariosDAO.validar(name, pass);
-            if (usuarios.getNombreUsuario() != null) {
+            if (usuarios.getNombre_Usuario() != null) {
+                // Si el login es exitoso, obtén una palabra aleatoria
+                palabraAleatoria = palabrasDAO.obtenerPalabraAleatoria();
+                
+                // Pasa la palabra y sus pistas al JSP usando el objeto request
+                request.setAttribute("palabraJuego", palabraAleatoria);
+                
+                // Redirige a la página del juego
                 request.getRequestDispatcher("MenuInicio.jsp").forward(request, response);
-            } else {                
+            } else {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
-
         } else {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-
     }
+
+    
 
     /**
      * Returns a short description of the servlet.

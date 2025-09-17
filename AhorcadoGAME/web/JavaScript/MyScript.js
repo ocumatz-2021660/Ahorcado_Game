@@ -7,7 +7,6 @@ let pist3 = document.getElementById('pistaText3');
 let objetoName = document.getElementById('objetoName');
 let botonAccion = document.getElementById('btnAccion');
 let botonReiniciar = document.getElementById('btnReiniciar');
-let botonPausa = document.getElementById('btnPausa');
 let imgAhorcado = document.getElementById('ImagenAhorcado');
 let juegoActivo = false;
 let enPausa = false;
@@ -20,24 +19,23 @@ let intentosIncorrectos = 0;
 const maxIntentos = 6;
 let chosenWordData = {}; // Declarar chosenWordData globalmente
 
+// Ahorraremos espacio de memoria eliminando el array 'palabras' de este script.
+// Ahora la palabra y las pistas vienen directamente de la base de datos a través del JSP.
+
 function cronometro() {
-    clearInterval(intervalo); // limpiar cualquier intervalo anterior
+    clearInterval(intervalo);
     intervalo = setInterval(() => {
-        if (!enPausa && juegoActivo) { // solo contar tiempo si no está en pausa
+        if (!enPausa && juegoActivo) {
             tiempo++;
             let minutos = Math.floor(tiempo / 60);
             let segundos = tiempo % 60;
             reloj.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
 
-            if (tiempo >= 60){
+            if (tiempo >= 60)
                 reloj.style.color = '#F5D400';
-            }
             if (tiempo >= 75) {
                 reloj.style.color = 'red';
                 reloj.style.fontWeight = 'bold';
-            }
-             if (tiempo === 90) {
-                pantallaLose();
             }
         }
     }, 1000);
@@ -51,7 +49,6 @@ function generarTeclado() {
         let btn = document.createElement('button');
         btn.textContent = letras[i];
 
-        // alternar color rojo/negro
         if (i % 2 === 0) {
             btn.className = 'teclado-rojo';
         } else {
@@ -69,15 +66,12 @@ function generarTeclado() {
                 errores();
             }
 
-            // actualizar palabra y deshabilitar la tecla
             actualizarPalabraMostrada();
             btn.disabled = true;
 
-            // Verificar si se ha ganado después de cada intento
             if (verificarVictoria()) {
                 detenerJuego();
                 document.getElementById('juegoWord').textContent = 'GANASTE';
-                document.getElementById('nameObjetc').style.display = "flex";
                 pantallaLose();
             }
         };
@@ -103,13 +97,12 @@ function actualizarPalabraMostrada() {
 }
 
 function verificarVictoria() {
-    // Si todas las letras han sido adivinadas, se gana
     return !palabraSeleccionada.split('').some(letra => !letrasAdivinadas.includes(letra));
 }
 
 function detenerJuego() {
     juegoActivo = false;
-    clearInterval(intervalo); // Detener el cronómetro
+    clearInterval(intervalo);
 }
 
 function mostrarPausa() {
@@ -130,16 +123,17 @@ function cerrarPausa() {
 }
 
 function cerrarJuego() {
-    window.location.href = "index.jsp";
+    location.reload();
 }
 
 function pantallaLose() {
     estadoJuego = true;
     document.getElementById('loseGame').style.display = 'flex';
-    cronometro();
+    detenerJuego(); // Se detiene el cronómetro al perder
 
     if (estadoJuego === true) {
-        objetoName.textContent = chosenWordData.palabra;
+        // Al perder, muestra la palabra completa
+        objetoName.textContent = palabraSeleccionada.toUpperCase();
     }
 }
 
@@ -168,36 +162,28 @@ function errores() {
             break;
     }
 }
-function reiniciarJuego(){
-    iniciarJuego();   
-}
 
 function iniciarJuego() {
-    let palabraCompleta = document.getElementById('objetoName').textContent;
-    if (!palabraCompleta || palabraCompleta.trim() === 'Nombre del objeto' || palabraCompleta.trim() === '') {
-        return; 
-    }
     tiempo = 0;
     juegoActivo = true;
     enPausa = false;
     estadoJuego = false;
     letrasAdivinadas = [];
     intentosIncorrectos = 0;
-    palabraSeleccionada = palabraCompleta.toLowerCase().trim();    
+
+    // Aquí es donde obtenemos los valores de los campos ocultos
+    palabraSeleccionada = document.getElementById('palabraJuego').value;
+    pist1.textContent = document.getElementById('pista1').value;
+    pist2.textContent = document.getElementById('pista2').value;
+    pist3.textContent = document.getElementById('pista3').value;
     cronometro();
-    generarTeclado();
     actualizarPalabraMostrada();
+    generarTeclado();
+    document.getElementById('objetoName').textContent = 'Nombre del objeto';
     document.getElementById('pausaGame').style.display = 'none';
     document.getElementById('loseGame').style.display = 'none';
-     document.getElementById('nameObjetc').style.display = 'none';
-    document.getElementById('changeNone').setAttribute('href','#');
-    document.getElementById('changeIniciar').setAttribute('href','Controlador?direccion=Game&accion=ObtenerPalabra');    
     imgAhorcado.setAttribute('src', 'Image/Ahorcado.png');
-    botonPausa.setAttribute('onclick','abrirPausa()');    
-    botonReiniciar.setAttribute('onclick','reiniciarJuego()');
-    
-}   
-
-window.onload = function() {
-    reiniciarJuego();
-};
+    botonAccion.src = "Image/botonPausa.png";
+    botonAccion.setAttribute('onclick', 'abrirPausa()');
+    botonReiniciar.setAttribute('onclick', 'location.reload()');
+}
