@@ -113,7 +113,9 @@
     border-radius: 10px;
     color: white;
 }
-
+.pistas{
+    align-items: center;    
+}
 .contenido-pistas-left,
 .contenido-pistas-right {
     flex: 1;
@@ -124,7 +126,7 @@
 }
 
 .contenido-pistas-right img {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
 }
 
