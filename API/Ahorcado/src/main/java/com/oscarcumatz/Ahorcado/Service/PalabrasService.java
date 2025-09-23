@@ -40,6 +40,18 @@ public class PalabrasService implements IPalabrasService{
                 palabras.setNombre_Palabra("Vasio");
                 return palabras;
             }
+            if(palabras.getNombre_Palabra().length() < 8){
+                palabras.setNombre_Palabra("Minimo");
+                return palabras;
+            }
+            if(palabras.getNombre_Palabra().length() > 100){
+                palabras.setNombre_Palabra("Maximo");
+                return palabras;
+            }
+            if(palabras.getPista_Uno().length() > 249 || palabras.getPista_Dos().length() > 249 || palabras.getPista_Tres().length() > 249){
+                palabras.setNombre_Palabra("MaximoPistas");
+                return palabras;
+            }
         }
         return palabrasRepository.save(palabras);
     }
@@ -59,6 +71,18 @@ public class PalabrasService implements IPalabrasService{
                         palabras.getPista_Dos() == null || palabras.getPista_Dos().trim().isEmpty() ||
                         palabras.getPista_Tres() == null || palabras.getPista_Tres().trim().isEmpty()){
                     palabras.setNombre_Palabra("Vasio");
+                    return palabras;
+                }
+                if(palabras.getNombre_Palabra().length() < 8){
+                    palabras.setNombre_Palabra("Minimo");
+                    return palabras;
+                }
+                if(palabras.getNombre_Palabra().length() > 100){
+                    palabras.setNombre_Palabra("Maximo");
+                    return palabras;
+                }
+                if(palabras.getPista_Uno().length() > 249 || palabras.getPista_Dos().length() > 249 || palabras.getPista_Tres().length() > 249){
+                    palabras.setNombre_Palabra("MaximoPistas");
                     return palabras;
                 }
             }

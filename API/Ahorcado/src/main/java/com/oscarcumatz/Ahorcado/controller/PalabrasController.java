@@ -33,6 +33,15 @@ public class PalabrasController {
         if("EnUso".equals(newPalabra.getNombre_Palabra())){
             return "La palabra ya existe en los registros";
         }
+        if("Minimo".equals(newPalabra.getNombre_Palabra())){
+            return "El minimo de caracteres para las palabras es de 8 caracteres";
+        }
+        if("Maximo".equals(newPalabra.getNombre_Palabra())){
+            return "El nombre de la palabra no puede revasar los 100 caracteres";
+        }
+        if("MaximoPistas".equals(newPalabra.getNombre_Palabra())){
+            return "Las pistas no pueden revasar los 250 caracteres";
+        }
         return "Palabra agregada correctamente";
     }
     @PutMapping ("/{Id_Palabra}")
@@ -46,6 +55,15 @@ public class PalabrasController {
         }
         if("EnUso".equals(updatePalabras.getNombre_Palabra())){
             return "La palabra ya existe en los registros";
+        }
+        if("Minimo".equals(updatePalabras.getNombre_Palabra())){
+            return "El minimo de caracteres para las palabras es de 8 caracteres";
+        }
+        if("Maximo".equals(updatePalabras.getNombre_Palabra())){
+            return "El nombre de la palabra no puede revasar los 100 caracteres";
+        }
+        if("MaximoPistas".equals(updatePalabras.getNombre_Palabra())){
+            return "Las pistas no pueden revasar los 250 caracteres";
         }
         return "Palabra Actualizada correctamente";
     }

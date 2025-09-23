@@ -33,6 +33,9 @@ public class UsuarioController {
         if("EnUso".equals(newUsuario.getNombre_Usuario())){
             return "El nombre ya esta en uso, escoja otro porfavor";
         }
+        if("Maximo".equals(newUsuario.getNombre_Usuario())){
+            return "no se puede revasar el maximo de caracteres (100)";
+        }
         return "Usuario agregado correctamente";
     }
     @PutMapping ("/{Id_Usuario}")
@@ -46,6 +49,9 @@ public class UsuarioController {
         }
         if("EnUso".equals(updateUsuario.getNombre_Usuario())){
             return "El nombre ya esta en uso, escoja otro porfavor";
+        }
+        if("Maximo".equals(updateUsuario.getNombre_Usuario())){
+            return "no se puede revasar el maximo de caracteres (100) en los campos contraseña y nombre";
         }
         return "Usuario Actualizado correctamente";
     }

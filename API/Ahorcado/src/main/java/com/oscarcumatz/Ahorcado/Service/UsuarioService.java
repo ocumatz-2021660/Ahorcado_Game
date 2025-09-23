@@ -39,6 +39,10 @@ public class UsuarioService implements IUsuarioService{
                 usuarios.setNombre_Usuario("Vasio");
                 return usuarios;
             }
+            if(usuarios.getNombre_Usuario().length() > 100 || usuarios.getContrasena().length() > 100){
+                usuarios.setNombre_Usuario("Maximo");
+                return usuarios;
+            }
         }
         return usuarioRepository.save(usuarios);
     }
@@ -57,6 +61,10 @@ public class UsuarioService implements IUsuarioService{
                 if (usuarios.getNombre_Usuario() == null || usuarios.getNombre_Usuario().trim().isEmpty() ||
                         usuarios.getContrasena() == null || usuarios.getContrasena().trim().isEmpty()) {
                     usuarios.setNombre_Usuario("Vasio");
+                    return usuarios;
+                }
+                if(usuarios.getNombre_Usuario().length() > 100 || usuarios.getContrasena().length() > 100){
+                    usuarios.setNombre_Usuario("Maximo");
                     return usuarios;
                 }
             }
