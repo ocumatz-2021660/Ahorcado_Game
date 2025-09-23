@@ -17,7 +17,6 @@
         <video autoplay muted loop id="bg-video">
             <source src="Image/GameFondo.mp4" type="video/mp4">
         </video>
-        <div class="overlay"></div>
         <header class="encabezado">
             <div class="logoImage">
                 <img src="Image/logo.png" alt="Logo"/>
@@ -74,9 +73,18 @@
                     </a>
                 </div>
             </div>
-        </div> <div class="seccionBTN">
-            <img id="btnAccion" src="Image/botonIniciar.png" alt="iniciar" onclick="iniciarJuego()"/>
-            <img id="btnReiniciar" src="Image/botonReiniciar.png" alt="reiniciar"/>
+        </div> 
+        <div class="seccionBTN">
+            <div class="contenedor-button" >
+                <div class="btn-arcade">
+                    <img id="btnAccion" src="Image/botonIniciar.png" alt="iniciar" onclick="iniciarJuego()"/>           
+                </div>                               
+            </div>
+            <div class="contenedor-button" >
+                <div class="btn-arcade">
+                    <img id="btnReiniciar" src="Image/botonReiniciar.png" alt="reiniciar"/>
+                </div>                               
+            </div>
         </div>
         <div class="contenido-teclado" id="tecladoGame"></div>
 

@@ -126,15 +126,7 @@ public class PalabrasDAO {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al obtener palabra aleatoria");
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
         return palabra;
     }
 }
