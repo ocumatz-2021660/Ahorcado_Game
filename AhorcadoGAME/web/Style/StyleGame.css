@@ -1,7 +1,6 @@
 
-
 #bg-video {
-    position: fixed;       /* siempre detrás */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -10,13 +9,14 @@
     z-index: -1;
     filter: brightness(0.7);
 }
+
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.47);
     z-index: -1;
 }
 
@@ -57,8 +57,20 @@
 .logoImage img:hover {
     transform: scale(1.1);
 }
-
-
+.arcade-screen-container {
+    width: 90%;
+    max-width: 1300px; 
+    margin: 40px auto;
+    padding: 20px;
+    
+    background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
+    border: 25px solid #5a5a5a;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.4), inset 0 0 15px rgba(0, 255, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .contenido-general {
     display: flex;
     flex-direction: row;
@@ -74,7 +86,6 @@
     color: white;
 }
 
-/* derecha */
 .contenido-ahorcado {
     flex: 0 1 45%;
     display: flex;
@@ -90,7 +101,6 @@
     border-radius: 10px;
 }
 
-/* izquierda */
 .contenido-informacion {
     flex: 1 1 55%;
     display: flex;
@@ -102,7 +112,6 @@
     box-sizing: border-box;
 }
 
-/* contenido pistas */
 .contenido-pistas {
     display: flex;
     flex-direction: row;
@@ -113,16 +122,18 @@
     border-radius: 10px;
     color: white;
 }
+
 .pistas{
-    align-items: center;    
+    align-items: center;
 }
+
 .contenido-pistas-left,
 .contenido-pistas-right {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;            /* separación entre elementos internos */
+    gap: 10px;
 }
 
 .contenido-pistas-right img {
@@ -154,7 +165,6 @@
     gap: 15px;
 }
 
-/* palabra */
 .contenido-palabra {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -165,7 +175,6 @@
     text-align: center;
 }
 
-/* botones */
 .seccionBTN {
     max-width: 1200px;
     margin: 0 auto;
@@ -186,12 +195,12 @@
     cursor: pointer;
     width: 100px;
     height: auto;
-
 }
 
 .seccionBTN button:hover {
     background-color: rgba(0,0,0,0.1);
 }
+
 .contenido-teclado {
     display: flex;
     flex-wrap: wrap;
@@ -203,7 +212,7 @@
     gap: 8px;
 }
 
-.teclado-rojo{
+.teclado-rojo {
     width: 60px;
     height: 60px;
     font-size: 1.2rem;
@@ -217,7 +226,8 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     touch-action: manipulation;
 }
-.teclado-negro{
+
+.teclado-negro {
     width: 60px;
     height: 60px;
     font-size: 1.2rem;
@@ -236,6 +246,7 @@
     transform: translateY(-2px);
     background-color: var(--button-hover);
 }
+
 .contenido-teclado button:disabled {
     background-color: #bdbdbd;
     cursor: not-allowed;
@@ -245,7 +256,7 @@
     transform: scale(0.9);
 }
 
-.estadoGame{
+.estadoGame {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -257,7 +268,8 @@
     justify-content: center;
     align-items: center;
 }
-.seccionPausa{
+
+.seccionPausa {
     background: #81AADA;
     padding: 20px;
     border-radius: 6px;
@@ -269,7 +281,8 @@
     border-radius: 15px;
     border: 6px ridge #757575;
 }
-.salir{
+
+.salir {
     width: 30px;
     height: 15px;
     font-size: 0.5rem;
@@ -283,96 +296,8 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     touch-action: manipulation;
 }
-.salir:hover{
+
+.salir:hover {
     background: red;
-}
-.container-InisioSesion {
-    width: 100%;
-    max-width: 500px; /* Limitar el ancho máximo */
-    height: 100%;
-    max-height: 500px; /* Ajusta la altura máxima si es necesario */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centra el contenedor en el centro de la página */
-    overflow: hidden;
-    padding: 1px 25px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    color: white;
-    text-align: center;
-}
-
-.opciones {
-    display: flex;
-    justify-content: center;  /* Centra el formulario horizontalmente */
-    align-items: center;      /* Centra el formulario verticalmente */
-    width: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-
-.formulario {
-    width: 100%;
-    max-width: 500px;  /* Limitar el ancho máximo del formulario */
-    padding: 20px;
-    background: transparent;
-    border-radius: 10px;
-    margin: 10px 0;
-    box-sizing: border-box;
-}
-
-.formulario h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: aliceblue;
-}
-
-.formulario label {
-    margin-bottom: 10px;
-    color: white;
-    display: block;
-}
-
-.formulario input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    gap: 20px;
-    box-sizing: border-box;
-    border: 6px ridge #757575;
-    background: linear-gradient(#247D41, #247D41, #247D6E);
-    border-radius: 10px;
-    color: white;
-}
-
-.formulario button {
-    margin-top: 50px;
-    width: 120px;
-    height: 50px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 8px;
-    border-color: #453B09;
-    background: red;
-    color: white;
-    transition: transform 0.2s, background-color 0.2s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    touch-action: manipulation;
-}
-
-.formulario button:hover {
-    background-color: black;
-    transition: 0.3s;
-}
-
-.error-msg {
-    color: #f44336;
-    font-size: 14px;
-    margin-top: 10px;
-    text-align: center;
 }
 

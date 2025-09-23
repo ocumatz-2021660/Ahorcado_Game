@@ -15,7 +15,7 @@
     </head>
     <body>
         <video autoplay muted loop id="bg-video">
-            <source src="Image/fondoGame.mp4" type="video/mp4">
+            <source src="Image/GameFondo.mp4" type="video/mp4">
         </video>
         <div class="overlay"></div>
         <header class="encabezado">
@@ -27,57 +27,54 @@
                 </span>
             </div>
         </header>
-        
+
         <%-- Aquí se añaden los campos ocultos para pasar los datos a JavaScript --%>
         <input type="hidden" id="palabraJuego" value="${palabraJuego.nombre_Palabra}">
         <input type="hidden" id="pista1" value="${palabraJuego.pista_Uno}">
         <input type="hidden" id="pista2" value="${palabraJuego.pista_Dos}">
         <input type="hidden" id="pista3" value="${palabraJuego.pista_Tres}">
-        
-        <%-- apartado para separar la informacion que muestra avances y las interacciones con el usuario --%>
-        <div class="contenido-general">
-            <%--Apartado para mostrar al muñeco (progreso de ahorcado) --%>
-            <div class="contenido-ahorcado">         
-                <img src="Image/Ahorcado.png" alt="Ahorcado.png" id="ImagenAhorcado"/>
-            </div>
-            <%--Apartado para msotrar la palabra, cualidades e interacciones --%>
-            <div class="contenido-informacion">               
-                <div class="contenido-pistas">
 
-                    <div class="contenido-pistas-left">
+        <div class="arcade-screen-container">
 
-                        <div class="tiempo">
-                            <p class="time" id="reloj">00:00</p>
+            <div class="contenido-general">
+                <div class="contenido-ahorcado">      
+                    <img src="Image/Ahorcado.png" alt="Ahorcado.png" id="ImagenAhorcado"/>
+                </div>
+                <div class="contenido-informacion">        
+                    <div class="contenido-pistas">
+
+                        <div class="contenido-pistas-left">
+
+                            <div class="tiempo">
+                                <p class="time" id="reloj">00:00</p>
+                            </div>
+
+                            <div class="pistas">
+                                <p id="pistText1">* Pista No.1</p>
+                                <p id="pistaText2">* Pista No.2</p>
+                                <p id="pistaText3">* Pista No.3</p>
+                            </div>
                         </div>
 
-                        <div class="pistas">
-                            <p id="pistText1">* Pista No.1</p>
-                            <p id="pistaText2">* Pista No.2</p>
-                            <p id="pistaText3">* Pista No.3</p>
+                        <div class="contenido-pistas-right">                        
+                            <p id="objetoName">Nombre del objeto</p>
+                            <img id="imagenOculta" src="Image/objetoAleatorio.png" alt="ImagenObjeto"/>
                         </div>
-
                     </div>
-
-                    <div class="contenido-pistas-right">                       
-                        <p id="objetoName">Nombre del objeto</p>
-                        <img id="imagenOculta" src="Image/objetoAleatorio.png" alt="ImagenObjeto"/>
+                    <div class="contenido-interacciones">
+                        <div class="contenido-palabra">
+                            <h2>Palabra</h2>
+                            <p id="palabraOculta">_ _ _ _ _ _ _ _</p>
+                        </div>
                     </div>
-
+                </div>            
+                <div>
+                    <a href="index.jsp">
+                        <button class="salir">X</button>
+                    </a>
                 </div>
-                <div class="contenido-interacciones">
-                    <div class="contenido-palabra">
-                        <h2>Palabra</h2>
-                        <p id="palabraOculta">_ _ _ _ _ _ _ _</p>
-                    </div>
-                </div>
-            </div>                 
-            <div>
-                <a href="index.jsp">
-                    <button class="salir">X</button>
-                </a>
             </div>
-        </div>       
-        <div class="seccionBTN">
+        </div> <div class="seccionBTN">
             <img id="btnAccion" src="Image/botonIniciar.png" alt="iniciar" onclick="iniciarJuego()"/>
             <img id="btnReiniciar" src="Image/botonReiniciar.png" alt="reiniciar"/>
         </div>

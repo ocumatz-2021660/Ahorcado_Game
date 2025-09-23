@@ -1,0 +1,256 @@
+
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.7);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.47);
+    z-index: -1;
+}
+
+.encabezado {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 10px 20px;
+    margin-bottom: 40px;
+}
+
+.logoImage {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    gap: 15px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.logoImage img {
+    width: 50px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.logoImage img:hover {
+    transform: scale(1.1);
+}
+
+.main-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    gap: 50px;
+}
+
+.container-InisioSesion {
+    width: 400px;
+    height: 580px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flip-card-front {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.flip-card-front .cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flip-card-back {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: rotateY(180deg);
+}
+
+.container-InisioSesion:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.opciones, .formulario {
+    width: 100%;
+    height: 100%;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.formulario h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: aliceblue;
+}
+
+.formulario label {
+    margin-bottom: 10px;
+    color: white;
+    display: block;
+}
+
+.formulario input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    gap: 20px;
+    box-sizing: border-box;
+    border: 6px ridge #757575;
+    background: linear-gradient(#247D41, #247D41, #247D6E);
+    border-radius: 10px;
+    color: white;
+}
+
+.formulario button {
+    margin-top: 50px;
+    width: 120px;
+    height: 50px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    border-color: #453B09;
+    background: red;
+    color: white;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    touch-action: manipulation;
+}
+
+.formulario button:hover {
+    background-color: black;
+    transition: 0.3s;
+}
+
+.error-msg {
+    color: #f44336;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.video-container {
+    width: 700px;
+    height: auto;
+    margin-left: 60px;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+@media (max-width: 992px) {
+    .main-content-wrapper {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+        gap: 30px;
+    }
+
+    .container-InisioSesion {
+        width: 90%;
+        max-width: 350px;
+        max-height: 500px;
+    }
+
+    .video-container {
+        margin-left: 0;
+        width: 90%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 576px) {
+    .encabezado {
+        padding: 5px 10px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    .logoImage img {
+        width: 40px;
+    }
+    
+    .container-InisioSesion, .video-container {
+        max-width: 90%;
+    }
+
+    .formulario {
+        padding: 10px;
+    }
+    
+    .formulario h2 {
+        font-size: 1.5rem;
+    }
+
+    .formulario button {
+        width: 100px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+}
