@@ -49,7 +49,7 @@ call sp_insertar_usuario('regil','1');
 DELIMITER //
 create procedure sp_MostrarUsuarios()
 begin
-    select * from usuarios;
+    select Id_Usuario, nombre_Usuario, contrasena from usuarios;
 end //
 DELIMITER ;
 call sp_MostrarUsuarios();
@@ -59,7 +59,7 @@ create procedure sp_buscarUsuario(
     in IDusuario int
 )
 begin
-    select * from usuarios where Id_Usuario = IDusuario;
+    select Id_Usuario, nombre_Usuario, contrasena from usuarios where Id_Usuario = IDusuario;
 end //
 DELIMITER ;
 call sp_buscarUsuario(1);
@@ -94,7 +94,7 @@ create procedure sp_ValidarUsuario(
     in pass varchar(100)
     )
 		begin
-		select * from Usuarios
+		select Id_Usuario, nombre_Usuario, contrasena from Usuarios
         where nameUser = nombre_Usuario and contrasena = pass;
 		end //
 DELIMITER ;
@@ -128,7 +128,7 @@ call sp_insertar_palabra('computadora', 'posee una pantalla integrada', 'requier
 DELIMITER //
 create procedure sp_obtener_palabras()
 begin
-    select * from palabras;
+    select Id_Palabra, nombre_Palabra, pista_Uno, pista_Dos, pista_Tres from palabras;
 end //
 DELIMITER ;
 call sp_
@@ -137,7 +137,7 @@ create procedure sp_obtener_palabra_por_id(
     in p_idpalabra int
 )
 begin
-    select * from palabras where Id_Palabra = p_idpalabra;
+    select Id_Palabra, nombre_Palabra, pista_Uno, pista_Dos, pista_Tres from palabras where Id_Palabra = p_idpalabra;
 end //
 DELIMITER ;
 DELIMITER //
@@ -165,3 +165,11 @@ begin
     delete from palabras where Id_Palabra = p_idpalabra;
 end //
 DELIMITER ;
+
+DELIMITER //
+create procedure sp_PalabraRandom()
+	begin
+		select Id_Palabra, nombre_Palabra, pista_Uno, pista_Dos, pista_Tres from palabras order by rand() limit 1;
+    end //
+DELIMITER ;    
+call sp_PalabraRandom();
