@@ -13,6 +13,7 @@
         <link rel="icon" href="Image/logo.png"/>
         <title>Ahorcado GAME</title>
     </head>
+    <div id="pantallaNegra" class="transicion-negra"></div>
     <body>
         <video autoplay muted loop id="bg-video">
             <source src="Image/GameFondo.mp4" type="video/mp4">
@@ -28,10 +29,10 @@
         </header>
 
         <%-- Aquí se añaden los campos ocultos para pasar los datos a JavaScript --%>
-        <input type="hidden" id="palabraJuego" value="${palabraJuego.nombre_Palabra}">
-        <input type="hidden" id="pista1" value="${palabraJuego.pista_Uno}">
-        <input type="hidden" id="pista2" value="${palabraJuego.pista_Dos}">
-        <input type="hidden" id="pista3" value="${palabraJuego.pista_Tres}">
+        <input type="hidden" id="palabraJuego" value="${palabraJuego.getNombre_Palabra()}">
+        <input type="hidden" id="pista1" value="${palabraJuego.getPista_Uno()}">
+        <input type="hidden" id="pista2" value="${palabraJuego.getPista_Dos()}">
+        <input type="hidden" id="pista3" value="${palabraJuego.getPista_Tres()}">
 
         <div class="arcade-screen-container">
 
@@ -57,7 +58,7 @@
 
                         <div class="contenido-pistas-right">                        
                             <p id="objetoName">Nombre del objeto</p>
-                            <img id="imagenOculta" src="Image/objetoAleatorio.png" alt="ImagenObjeto"/>
+                            <img id="imagenOculta" src="Image/default.png" alt="ImagenObjeto"/>
                         </div>
                     </div>
                     <div class="contenido-interacciones">
@@ -101,7 +102,8 @@
         <div id="loseGame" class="estadoGame">
             <div class="contenidoPausa">         
                 <div id="btnPausa" class="seccionPausa">                 
-                    <h1 id="juegoWord">JUEGO PERDIDO</h1>                      
+                    <h1 id="juegoWord">JUEGO PERDIDO</h1>     
+                    <p id="palabraPerdidaTexto">La palabra era: </p>
                     <img src="Image/botonReiniciar.png" alt="Reiniciar" onclick="cerrarJuego()"/>
                     <img src="Image/botonSalir.png" alt="Salir" onclick="cerrarJuego()"/>
                 </div>

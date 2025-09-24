@@ -24,7 +24,7 @@ let chosenWordData = {};
 const palabrasCollection = [
     {
         palabra: 'motocicleta',
-        imagen: 'Image/MotocicletaImage.png'                
+        imagen: 'Image/MotocicletaImage.png'
     },
     {
         palabra: 'carretera',
@@ -62,11 +62,19 @@ const palabrasCollection = [
         palabra: 'computadora',
         imagen: 'Image/computadoraImage.png'
     }
-
-
-
-
 ];
+
+function transicionInicio() {
+    const pantallaNegra = document.getElementById('pantallaNegra');    
+    if (pantallaNegra) {
+        setTimeout(() => {
+            pantallaNegra.style.opacity = '0';
+        }, 500);
+        setTimeout(() => {
+            pantallaNegra.style.display = 'none';
+        }, 1000); 
+    }
+}
 
 function cronometro() {
     clearInterval(intervalo);
@@ -82,6 +90,9 @@ function cronometro() {
             if (tiempo >= 75) {
                 reloj.style.color = 'red';
                 reloj.style.fontWeight = 'bold';
+            }
+            if (tiempo === 90) {
+                pantallaLose();
             }
         }
     }, 1000);
@@ -126,7 +137,7 @@ function generarTeclado() {
                 detenerJuego();
                 document.getElementById('juegoWord').textContent = 'GANASTE';
                 document.getElementById('imagenOculta').setAttribute('src', imagenPalabra);
-                        
+
                 pantallaLose();
             }
         };
@@ -150,11 +161,23 @@ function actualizarPalabraMostrada() {
     palabraOculta.textContent = palabraOcul.trim();
     return resuelto;
 }
+function mostrarImagenPalabra() {
+    const palabraEncontrada = palabrasCollection.find(p => p.palabra.toLowerCase() === palabraSeleccionada.toLowerCase());
 
-function verificarVictoria() {
-    return !palabraSeleccionada.split('').some(letra => !letrasAdivinadas.includes(letra));
+    if (palabraEncontrada) {
+        imagenPalabra = palabraEncontrada.imagen;
+    } else {
+        imagenPalabra = "Image/default.png";
+    }
+    document.getElementById('imagenOculta').setAttribute('src', imagenPalabra);
 }
-
+function verificarVictoria() {
+    const palabraResuelta = !palabraSeleccionada.split('').some(letra => !letrasAdivinadas.includes(letra));
+    if (palabraResuelta) {
+        mostrarImagenPalabra();
+    }
+    return palabraResuelta;
+}
 function detenerJuego() {
     juegoActivo = false;
     clearInterval(intervalo);
@@ -185,10 +208,9 @@ function pantallaLose() {
     estadoJuego = true;
     document.getElementById('loseGame').style.display = 'flex';
     detenerJuego();
+    document.getElementById('palabraPerdidaTexto').textContent = 'La palabra era,: ' + palabraSeleccionada.toUpperCase();
 
-    if (estadoJuego === true) {
-        objetoName.textContent = palabraSeleccionada.toUpperCase();
-    }
+    objetoName.textContent = palabraSeleccionada.toUpperCase();
 }
 
 function errores() {
@@ -210,6 +232,7 @@ function errores() {
             break;
         case 6:
             imgAhorcado.setAttribute('src', 'Image/Error6.png');
+            mostrarImagenPalabra();
             pantallaLose();
             break;
         default:
@@ -217,16 +240,15 @@ function errores() {
     }
 }
 
-function iniciarJuego() {
+function iniciarJuego() { 
     tiempo = 0;
     juegoActivo = true;
     enPausa = false;
     estadoJuego = false;
     letrasAdivinadas = [];
     intentosIncorrectos = 0;
-
-    // Aquí es donde obtenemos los valores de los campos ocultos
-    palabraSeleccionada = document.getElementById('palabraJuego').value;
+    // Aquí es donde obtenemos los valores de los campos ocultos de palabra y sus atributoz
+    palabraSeleccionada = document.getElementById('palabraJuego').value.toLowerCase();
     pist1.textContent = document.getElementById('pista1').value;
     pist2.textContent = document.getElementById('pista2').value;
     pist3.textContent = document.getElementById('pista3').value;
@@ -241,3 +263,4 @@ function iniciarJuego() {
     botonAccion.setAttribute('onclick', 'abrirPausa()');
     botonReiniciar.setAttribute('onclick', 'location.reload()');
 }
+   transicionInicio();

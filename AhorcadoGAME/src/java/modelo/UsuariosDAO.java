@@ -12,9 +12,10 @@ public class UsuariosDAO {
     PreparedStatement ps;
     ResultSet rs;
     int resp;
-
+    //metodo para validar
     public Usuarios validar(String name, String pass) {
         Usuarios usuarios = new Usuarios();
+        //procedimiento almacenado 
         String sql = "call sp_ValidarUsuario(?, ?);";
         try {
             con = cn.Conexion();

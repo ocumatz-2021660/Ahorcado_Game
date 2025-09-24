@@ -32,10 +32,11 @@
                     <div class="flip-card-back">
                         <div class="opciones">
                             <div class="formulario" id="login-form">
+                                <-<!-- Validar en accion, obtiene los parametros de txtUsuarios y txtPass para compararlos -->
                                 <form action="Validar" method="POST">
                                     <h2>Ahorcado GAME</h2>
                                     <label for="Nombredeusuario">Nombre de usuario</label>
-                                    <input type="text" placeholder="Usuario" id="login-username" name="txtUsuarioName" required>
+                                    <input autocomplete="off" type="text" placeholder="Usuario" id="login-username" name="txtUsuarioName" required >
                                     <label for="ContraseñaUsuario">Contraseña</label>
                                     <input type="password" placeholder="Contraseña" id="login-password" name="txtPass" required>
                                     <button name="accion" value="Ingresar">Iniciar sesión</button>

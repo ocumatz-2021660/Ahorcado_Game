@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+
 package controlador;
 
 import java.io.IOException;
@@ -84,23 +81,29 @@ public class Validar extends HttpServlet {
         String accion = request.getParameter("accion");
 
         if ("Ingresar".equalsIgnoreCase(accion)) {
+            //obtiene los parametros de los input y los ingresa al metodo
             String name = request.getParameter("txtUsuarioName");
             String pass = request.getParameter("txtPass");
-
+            //Escoje el metodo validar y utiiliza los parametros
             usuarios = usuariosDAO.validar(name, pass);
+            //si el metodo encuentra coincidencias avanza si no, recarga la pagina
             if (usuarios.getNombre_Usuario() != null) {
-                // Si el login es exitoso, obtén una palabra aleatoria
+                //metodo para generar la palabra aleatoria en el juego (la obtiene de la base de datos)
                 palabraAleatoria = palabrasDAO.obtenerPalabraAleatoria();
-                
-                // Pasa la palabra y sus pistas al JSP usando el objeto request
+                //agrega la palabra aleatoria al contenedor con la id palabraJuego
                 request.setAttribute("palabraJuego", palabraAleatoria);
                 
-                // Redirige a la página del juego
+                // Redirige a la página del juego menuInicio
                 request.getRequestDispatcher("MenuInicio.jsp").forward(request, response);
+                System.out.println("Inicio de sesion exitoso");
             } else {
+                //si no encuentra coicidencias con los parametros recarga la pagina
                 request.getRequestDispatcher("index.jsp").forward(request, response);
+                System.out.println("Credencialse incorrectas");
             }
         } else {
+            //si no encuenra coincidencias con los parametros recarga la pagina
+            System.out.println("Intenta iniciar sesion");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

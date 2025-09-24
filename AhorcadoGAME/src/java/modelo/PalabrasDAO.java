@@ -77,39 +77,11 @@ public class PalabrasDAO {
             e.printStackTrace();
         }
         return cantidad;
-    }
-
-    public Palabras obtenerPalabraAleatoriauwu() {
-        String sql = "CALL sp_MostrarPalabra();";
-        List<Palabras> listaPalabras = new ArrayList<>();
-        Palabras palabraAleatoria = null;
-        try {
-            con = cn.Conexion();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Palabras words = new Palabras();
-                words.setId_Palabra(rs.getInt(1));
-                words.setNombre_Palabra(rs.getString(2));
-                words.setPista_Uno(rs.getString(3));
-                words.setPista_Dos(rs.getString(4));
-                words.setPista_Tres(rs.getString(5));
-                listaPalabras.add(words);
-            }
-
-            if (!listaPalabras.isEmpty()) {
-                // Esto es lo que hace la magia de la aleatoriedad
-                Collections.shuffle(listaPalabras);
-                palabraAleatoria = listaPalabras.get(0);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return palabraAleatoria;
-    }
-    
+    }    
+    //metodo para escojer la palabra
     public Palabras obtenerPalabraAleatoria() {
         Palabras palabra = null;
+        // en en el metodo se busca una palabra aleatoria y la traemos para agrgarla al proyecto
         String sql = "SELECT * FROM Palabras ORDER BY RAND() LIMIT 1;";
         try {
             con = cn.Conexion();
@@ -117,11 +89,11 @@ public class PalabrasDAO {
             rs = ps.executeQuery();
             if (rs.next()) {
                 palabra = new Palabras();
-                palabra.setId_Palabra(rs.getInt("Id_Palabra"));
-                palabra.setNombre_Palabra(rs.getString("nombre_Palabra"));
-                palabra.setPista_Uno(rs.getString("pista_Uno"));
-                palabra.setPista_Dos(rs.getString("pista_Dos"));
-                palabra.setPista_Tres(rs.getString("pista_Tres"));
+                palabra.setId_Palabra(rs.getInt(1));
+                palabra.setNombre_Palabra(rs.getString(2));
+                palabra.setPista_Uno(rs.getString(3));
+                palabra.setPista_Dos(rs.getString(4));
+                palabra.setPista_Tres(rs.getString(5));
             }
         } catch (Exception e) {
             e.printStackTrace();
