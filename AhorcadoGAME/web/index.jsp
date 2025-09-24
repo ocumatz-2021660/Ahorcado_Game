@@ -8,6 +8,7 @@
         <title>Ahorcado GAME</title>
     </head>
     <body>
+        <div id="pantallaCarga" class="transicion-negra"></div>
         <video autoplay muted loop id="bg-video">
             <source src="Image/fondoGame.mp4" type="video/mp4">
         </video>
@@ -56,7 +57,6 @@
             </div>
 
         </div>
-
-        <script src="JavaScript/MyScript.js"></script>
+        <script src="JavaScript/loginScript.js"></script>
     </body>
 </html>

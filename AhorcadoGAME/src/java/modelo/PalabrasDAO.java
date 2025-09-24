@@ -82,7 +82,7 @@ public class PalabrasDAO {
     public Palabras obtenerPalabraAleatoria() {
         Palabras palabra = null;
         // en en el metodo se busca una palabra aleatoria y la traemos para agrgarla al proyecto
-        String sql = "SELECT * FROM Palabras ORDER BY RAND() LIMIT 1;";
+        String sql = "call sp_PalabraRandom();";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);

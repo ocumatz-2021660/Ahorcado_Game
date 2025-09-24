@@ -38,7 +38,7 @@
 
             <div class="contenido-general">
                 <div class="contenido-ahorcado">      
-                    <img src="Image/Ahorcado.png" alt="Ahorcado.png" id="ImagenAhorcado"/>
+                    <img src="Image/AhorcadoBase.jpeg" alt="AhorcadoBase" id="ImagenAhorcado"/>
                 </div>
                 <div class="contenido-informacion">        
                     <div class="contenido-pistas">
